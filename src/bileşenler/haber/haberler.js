@@ -87,8 +87,73 @@ const data = [
     ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    baslik: 'Türkiye, EURO 2028 ev sahibi seçilebilir mi?',
+    tarih: '23 Ekim 2022',
+    ilkParagraf: `EURO 2028 ve 2032’yi düzenlemeye hak kazanan ülkeler Eylül’ de açıklanacak.`,
+
+    ikinciParagraf: `Fakat Türkiye’nin iki organizasyon için de iki güçlü rakibi var: 2028’de
+           Birleşik Krallık ve İrlanda Cumhuriyeti, 2032’de ise İtalya bu turnuvaya ev sahipliği yapmak istiyor. `,
+
+    ucuncuParagraf: `Bu sefer oylamalardan farklı bir sonuç çıkması için bir neden olup olmadığını
+           sorduğumuz Tivibu Spor Editörü Rezzan Yetiş, “Bu kez farklı olması için sportif anlamda bir farklılık
+           göremiyorum. Şampiyonlar Ligi'ne ev sahipliği yapacak olmamız ve o finalde ortaya koyacağımız prestij belki bir fark yaratabilir” diyor.`
   }
+  
 ];
+
+
+const haberYapici = (haberler) => {
+  const container = document.createElement("div");
+  container.className = "article";
+
+  const baslik = document.createElement("h2");
+  baslik.textContent = haberler.baslik;
+  container.append(baslik);
+
+  const haberTarih = document.createElement("p");
+  haberTarih.className = "tarih";
+  haberTarih.textContent = haberler.tarih;
+  container.append(haberTarih);
+
+  const ilkParagraf = document.createElement("p");
+  ilkParagraf.className = "ilk-para";
+  ilkParagraf.textContent = haberler.ilkParagraf;
+  container.append(ilkParagraf);
+
+  const ikiParagraf = document.createElement("p");
+  ikiParagraf.className = "iki-para";
+  ikiParagraf.textContent = haberler.ikinciParagraf;
+  container.append(ikiParagraf);
+
+  const ucParagraf = document.createElement("p");
+  ucParagraf.className = "uc-para";
+  ucParagraf.textContent = haberler.ucuncuParagraf;
+  container.append(ucParagraf);
+
+  const expBtn = document.createElement("span");
+  expBtn.className = "expandButton";
+  expBtn.textContent = "+";
+
+  expBtn.addEventListener("click", () => {
+    const article = expBtn.parentNode;
+    article.classList.toggle("article-open");
+  });
+
+  container.append(expBtn);
+
+  return container;
+
+};
+
+const articleContainer = document.querySelector(".articles");
+
+data.forEach((haberler) => {
+  articleContainer.append(haberYapici(haberler));
+})
+
+
 
 /*
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
